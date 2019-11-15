@@ -10,6 +10,7 @@ module.exports = Common;
 
 (function() {
 
+    Common._timeUnit = 1000 / 60;
     Common._nextId = 0;
     Common._seed = 0;
     Common._nowStartTime = +(new Date());
@@ -548,10 +549,6 @@ module.exports = Common;
      */
     Common._requireGlobal = function(globalName, moduleName) {
         var obj = (typeof window !== 'undefined' ? window[globalName] : typeof global !== 'undefined' ? global[globalName] : null);
-
-        //  Breaks webpack :(
-        // return obj || require(moduleName);
-
-        return obj;
+        return obj || require(moduleName);
     };
 })();
